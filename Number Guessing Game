@@ -1,0 +1,65 @@
+package com.ig;
+
+import java.util.Scanner;
+import java.util.Random;
+
+
+public class NumberGuessingGame {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Random random = new Random();
+		
+		int minrange=1;
+		int maxrange=100;
+		int numbertoguess;
+		int numberoftries;
+		int maxtries=5;
+		int score=0;
+		boolean playagain = true;
+		
+		
+		while(playagain) {
+			numbertoguess=random.nextInt(maxrange-minrange+1)+minrange;
+			numberoftries=0;
+			
+			System.out.println("Welcome to Number Guessing Game!");
+			System.out.println("I am thinking of a number between "+minrange+" and "+maxrange+".");
+			
+			while(numberoftries<maxtries) {
+				System.out.println("Enter Your Guess : ");
+				int userGuess=scanner.nextInt();
+				numberoftries++;	
+
+			if(userGuess<minrange||userGuess>maxrange) {
+				System.out.println("Please enter the valid number within the range");
+				continue;
+			}
+			if(userGuess==numbertoguess) {
+				System.out.println("Congratulations! You have guessed the correct number in "+numberoftries+" tries.");
+				score++;
+				break;
+			}else if(userGuess<numbertoguess) {
+				System.out.println("Too low. Try again.");
+			}else {
+				System.out.println("Too high. Try again.");
+			}
+	
+			}
+			if(numberoftries==maxtries) {
+				System.out.println("Sorry, you have reached the maximum number of attempts.The correct number was "+numbertoguess+".");
+				
+			}
+			System.out.print("Do you want to play again? (yes/no): ");
+            String playAgainChoice = scanner.next().toLowerCase();
+            playagain = playAgainChoice.equals("yes");
+			
+			
+		}
+		System.out.println("Thanks for playing! Your total score is: "+score);
+		
+	
+	}
+
+}
+
